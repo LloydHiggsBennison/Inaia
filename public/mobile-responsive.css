@@ -1,0 +1,124 @@
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+
+    /* Hide sidebar by default on mobile */
+    .sidebar {
+        transform: translateX(-100%);
+    }
+
+    .sidebar.active {
+        transform: translateX(0);
+    }
+
+    /* Adjust main content for mobile */
+    .main-content {
+        margin-left: 0 !important;
+    }
+
+    /* Hamburger always visible on mobile */
+    .hamburger {
+        display: flex !important;
+    }
+
+    /* Adjust chat container */
+    .chat-container {
+        max-width: 100%;
+        padding: 10px;
+    }
+
+    /* Adjust header */
+    .chat-header {
+        padding: 20px 0 10px;
+    }
+
+    .chat-header h1 {
+        font-size: 24px;
+    }
+
+    /* Adjust messages */
+    .message {
+        max-width: 95%;
+        padding: 12px 14px;
+    }
+
+    /* Adjust input container */
+    .input-container {
+        padding: 10px;
+    }
+
+    .input-wrapper {
+        padding: 10px 12px;
+        border-radius: 20px;
+    }
+
+    /* Adjust buttons */
+    .input-wrapper button {
+        padding: 6px;
+    }
+
+    /* Model selector */
+    .model-selector {
+        right: 10px;
+        top: 10px;
+    }
+
+    .model-dropdown {
+        right: 0;
+        min-width: 200px;
+    }
+
+    /* File preview */
+    .file-preview-item {
+        padding: 8px;
+        font-size: 13px;
+    }
+
+    /* Code blocks */
+    .message pre {
+        font-size: 13px;
+    }
+
+    /* Adjust sidebar width */
+    .sidebar {
+        width: 260px;
+    }
+
+    /* New chat button */
+    .new-chat-btn {
+        padding: 10px 14px;
+        font-size: 14px;
+    }
+
+    /* Conversation items */
+    .conversation-item {
+        padding: 10px 12px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+
+    /* Extra small screens */
+    .chat-header h1 {
+        font-size: 20px;
+    }
+
+    .message {
+        padding: 10px 12px;
+        font-size: 14px;
+    }
+
+    .input-wrapper {
+        padding: 8px 10px;
+        gap: 8px;
+    }
+
+    .model-selector-btn {
+        padding: 6px 10px;
+        font-size: 13px;
+    }
+
+    .sidebar {
+        width: 240px;
+    }
+}
