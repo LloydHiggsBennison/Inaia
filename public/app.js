@@ -47,10 +47,13 @@ function attachEventListeners() {
         }
     });
 
-    // Auto-resize textarea
+    // Auto-resize textarea and keep it visible
     messageInput.addEventListener('input', () => {
         messageInput.style.height = 'auto';
         messageInput.style.height = Math.min(messageInput.scrollHeight, 150) + 'px';
+
+        // Scroll textarea into view smoothly
+        messageInput.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     });
 
     // File upload listeners

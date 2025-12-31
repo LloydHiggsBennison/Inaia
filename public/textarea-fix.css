@@ -36,11 +36,3 @@
 #messageInput::-webkit-scrollbar-thumb:hover {
     background: var(--text-secondary);
 }
-
-/* Make input container sticky at bottom */
-.input-container {
-    position: sticky !important;
-    bottom: 0 !important;
-    background: var(--bg-primary) !important;
-    z-index: 10 !important;
-}
