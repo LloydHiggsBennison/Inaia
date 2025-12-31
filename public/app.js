@@ -287,8 +287,12 @@ async function sendMessage() {
             };
         }
 
+
+        // Determine API endpoint based on environment
+        const apiEndpoint = window.location.hostname.includes('vercel.app') ? '/api/chat' : '/chat';
+
         // Call API
-        const response = await fetch('/chat', fetchOptions);
+        const response = await fetch(apiEndpoint, fetchOptions);
 
         if (!response.ok) {
             throw new Error('Error en la respuesta del servidor');

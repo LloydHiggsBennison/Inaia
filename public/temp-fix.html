@@ -1,0 +1,12 @@
+<!-- Temporary notice for file upload -->
+<script>
+// Disable file upload in production (temporary)
+if (window.location.hostname.includes('vercel.app')) {
+    document.addEventListener('DOMContentLoaded', () => {
+        const attachBtn = document.getElementById('attachBtn');
+        if (attachBtn) {
+            attachBtn.style.display = 'none';
+        }
+    });
+}
+</script>
