@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Chat</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Markdown parser -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <button class="new-chat-btn" id="newChatBtn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 5v14M5 12h14"/>
+                </svg>
+                <span>Nuevo chat</span>
+            </button>
+        </div>
+        
+        <div class="conversations-list" id="conversationsList">
+            <!-- Conversations will be dynamically added here -->
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content" id="mainContent">
+        <!-- Hamburger menu - always visible -->
+        <button class="hamburger" id="hamburger" aria-label="Toggle sidebar">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        
+        <!-- Model Selector -->
+        <div class="model-selector-container">
+            <button class="model-selector-btn" id="modelSelectorBtn">
+                <span class="model-name" id="selectedModelName">Auto</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M6 9l6 6 6-6"/>
+                </svg>
+            </button>
+            <div class="model-dropdown" id="modelDropdown">
+                <div class="model-option selected" data-model="auto">
+                    <div class="model-option-header">
+                        <span class="model-option-name">Auto</span>
+                        <svg class="model-checkmark" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="20 6 9 17 4 12"/>
+                        </svg>
+                    </div>
+                    <span class="model-option-desc">Rotación automática entre modelos</span>
+                </div>
+                <div class="model-option" data-model="kimi">
+                    <div class="model-option-header">
+                        <span class="model-option-name">Kimi K2</span>
+                    </div>
+                    <span class="model-option-desc">Consultas generales rápidas</span>
+                </div>
+                <div class="model-option" data-model="reasoning">
+                    <div class="model-option-header">
+                        <span class="model-option-name">GPT-OSS-120B</span>
+                    </div>
+                    <span class="model-option-desc">Razonamiento profundo</span>
+                </div>
+                <div class="model-option" data-model="cerebras">
+                    <div class="model-option-header">
+                        <span class="model-option-name">Cerebras Llama</span>
+                    </div>
+                    <span class="model-option-desc">Respuestas rápidas alternativas</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="chat-container">
+            <div class="chat-header">
+                <h1 id="chatTitle">¿Con qué puedo ayudarte?</h1>
+            </div>
+            
+            <div class="messages-container" id="messagesContainer">
+                <!-- Messages will appear here -->
+            </div>
+            
+            <div class="input-container">
+                <!-- File preview area - moved above input -->
+                <div class="file-preview-container" id="filePreviewContainer"></div>
+                
+                <div class="input-wrapper">
+                    <button class="attach-btn" id="attachBtn" aria-label="Adjuntar">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/>
+                        </svg>
+                    </button>
+                    <input 
+                        type="text" 
+                        id="messageInput" 
+                        placeholder="Pregunta lo que quieras" 
+                        autocomplete="off"
+                    />
+                    <button class="voice-btn" aria-label="Voz">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                            <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                            <line x1="12" y1="19" x2="12" y2="23"/>
+                            <line x1="8" y1="23" x2="16" y2="23"/>
+                        </svg>
+                    </button>
+                    <button class="send-btn" id="sendBtn" aria-label="Enviar">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <polyline points="12 16 16 12 12 8"/>
+                            <line x1="8" y1="12" x2="16" y2="12"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Hidden file input -->
+            <input 
+                type="file" 
+                id="fileInput" 
+                accept="image/*,.pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.json,.csv,.zip,.rar,.md" 
+                multiple 
+                hidden
+            />
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
