@@ -1,9 +1,7 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { IncomingForm } from 'formidable';
 import { groqService, groqReasoningService } from '../services/groq.js';
 import { cerebrasService } from '../services/cerebras.js';
 import type { AIService, ChatMessage } from '../types.js';
-import fs from 'fs';
 
 // Service rotation
 let currentServiceIndex = 0;
@@ -13,17 +11,6 @@ function getNextService(): AIService {
     const service = services[currentServiceIndex];
     currentServiceIndex = (currentServiceIndex + 1) % services.length;
     return service;
-}
-
-// Helper to parse form data
-function parseForm(req: VercelRequest): Promise<{ fields: any; files: any }> {
-    return new Promise((resolve, reject) => {
-        const form = new IncomingForm();
-        form.parse(req, (err, fields, files) => {
-            if (err) reject(err);
-            else resolve({ fields, files });
-        });
-    });
 }
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
@@ -41,27 +28,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
 
     try {
-        let messages: ChatMessage[];
-        let model = 'auto';
-
-        // Check if it's multipart (has files)
-        const contentType = req.headers['content-type'] || '';
-
-        if (contentType.includes('multipart/form-data')) {
-            // Handle file upload
-            const { fields, files } = await parseForm(req);
-
-            messages = JSON.parse(fields.messages as string);
-            model = (fields.model as string) || 'auto';
-
-            // Note: File processing in serverless is limited
-            // Files are already processed client-side and sent as text
-            console.log(`Received ${Object.keys(files).length} files (text extracted client-side)`);
-        } else {
-            // Regular JSON request
-            messages = req.body.messages || [];
-            model = req.body.model || 'auto';
-        }
+        const { messages, model = 'auto' } = req.body;
 
         if (!messages || !Array.isArray(messages)) {
             return res.status(400).json({ error: 'Invalid messages format' });
