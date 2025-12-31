@@ -6,3 +6,5 @@ dist/
 .vercel
 .vscode/
 package-lock.json
+
+.vercel

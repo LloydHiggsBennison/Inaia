@@ -15,9 +15,5 @@
             "src": "/(.*)",
             "dest": "/public/$1"
         }
-    ],
-    "env": {
-        "GROQ_API_KEY": "@groq_api_key",
-        "CEREBRAS_API_KEY": "@cerebras_api_key"
-    }
+    ]
 }
