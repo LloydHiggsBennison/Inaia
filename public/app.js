@@ -236,8 +236,9 @@ async function sendMessage() {
     appendMessage('user', message);
     addMessageToConversation('user', message);
 
-    // Clear input
+    // Clear input and reset height
     messageInput.value = '';
+    messageInput.style.height = 'auto';
 
     // Update conversation title if it's the first message
     const conversation = conversations.find(c => c.id === currentConversationId);
