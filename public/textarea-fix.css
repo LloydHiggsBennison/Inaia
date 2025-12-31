@@ -1,0 +1,38 @@
+/* Additional styles for textarea multiline support */
+#messageInput {
+    flex: 1 !important;
+    background: transparent !important;
+    border: none !important;
+    color: var(--text-primary) !important;
+    font-size: 15px !important;
+    outline: none !important;
+    font-family: inherit !important;
+    resize: none !important;
+    min-height: 24px !important;
+    max-height: 150px !important;
+    overflow-y: auto !important;
+    line-height: 1.5 !important;
+    padding: 0 !important;
+}
+
+#messageInput::placeholder {
+    color: var(--text-secondary) !important;
+}
+
+/* Custom scrollbar for textarea */
+#messageInput::-webkit-scrollbar {
+    width: 6px;
+}
+
+#messageInput::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+#messageInput::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 3px;
+}
+
+#messageInput::-webkit-scrollbar-thumb:hover {
+    background: var(--text-secondary);
+}
